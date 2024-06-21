@@ -1,6 +1,11 @@
 module.exports = {
   root: true,
-  ignorePatterns: ["webpack.config.js", "webpack.dev.js", "webpack.prod.js"],
+  ignorePatterns: [
+    "webpack.config.js",
+    "webpack.dev.js",
+    "webpack.prod.js",
+    "webpack.common.js",
+  ],
   parser: "@typescript-eslint/parser",
   extends: [
     "plugin:@typescript-eslint/recommended",

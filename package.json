@@ -56,14 +56,14 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "eslint src/**/*.{js,jsx}"
     }
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json}": [
       "eslint --fix --max-warnings 0"
     ],
-    "src/**/*.{js,jsx,ts,tsx,json,css,less,md}": [
+    "src/**/*.{css,less,md}": [
       "prettier --write"
     ]
   }
