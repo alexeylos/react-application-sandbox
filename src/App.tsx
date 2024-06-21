@@ -1,5 +1,5 @@
-import ".//styles.less";
-import { Button } from "antd";
+import './/styles.less';
+import { Button } from 'antd';
 // import "antd/dist/antd.less";
 
 const App = () => {

@@ -1,19 +1,13 @@
 module.exports = {
   root: true,
-  ignorePatterns: [
-    "webpack.config.js",
-    "webpack.dev.js",
-    "webpack.prod.js",
-  ],
+  ignorePatterns: ["webpack.config.js", "webpack.dev.js", "webpack.prod.js"],
   parser: "@typescript-eslint/parser",
   extends: [
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
-    // "plugin:import/errors",
-    // "plugin:import/warnings",
-    // "plugin:import/typescript",
     "prettier",
+    "plugin:prettier/recommended",
   ],
   parserOptions: {
     ecmaVersion: 2020,
