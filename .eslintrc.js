@@ -1,43 +1,41 @@
 module.exports = {
   root: true,
-  ignorePatterns: [
-    "webpack.config.js",
-    "webpack.dev.js",
-    "webpack.prod.js",
-  ],
-  parser: "@typescript-eslint/parser",
+  ignorePatterns: ['webpack.config.js', 'webpack.dev.js', 'webpack.prod.js', 'tsconfig.json'],
+  parser: '@typescript-eslint/parser',
   extends: [
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
-    "plugin:jsx-a11y/recommended",
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:jsx-a11y/recommended',
     // "plugin:import/errors",
     // "plugin:import/warnings",
     // "plugin:import/typescript",
-    "prettier",
+    'prettier',
   ],
   parserOptions: {
     ecmaVersion: 2020,
-    sourceType: "module",
+    sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
     },
-    project: "./tsconfig.json",
+    project: './tsconfig.json',
+    tsconfigRootDir: __dirname,
+    extraFileExtensions: ['.json'],
   },
   settings: {
     react: {
-      version: "detect",
+      version: 'detect',
     },
-    "import/resolver": {
+    'import/resolver': {
       typescript: {},
     },
   },
   rules: {
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/no-var-requires": "off",
-    "react/prop-types": "off",
-    "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-var-requires': 'off',
+    'react/prop-types': 'off',
+    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
 };
