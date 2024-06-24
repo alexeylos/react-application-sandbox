@@ -9,7 +9,7 @@ const App = () => {
   return (
     <Flex gap="middle" align="center" vertical>
       <Flex justify="center" align="center">
-        <Title>Hello World!!</Title>
+        <Title>Hello World!</Title>
       </Flex>
       <Flex gap="middle" justify="center" align="center">
         <Button type="primary">Primary Button</Button>

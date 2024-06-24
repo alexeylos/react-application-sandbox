@@ -9,7 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prettier": "prettier --write \"src/**/*.+(js|jsx|json|css|less|scss|ts|tsx|md)\"",
     "lint-staged": "lint-staged",
-    "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\""
+    "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
