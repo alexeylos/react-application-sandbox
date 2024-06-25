@@ -1,6 +1,4 @@
-import './/styles.less';
 import { Button, Flex } from 'antd';
-// import "antd/dist/antd.less";
 import { Typography } from 'antd';
 
 const { Title } = Typography;
