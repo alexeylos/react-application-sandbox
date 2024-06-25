@@ -1,1 +1,2 @@
-npm test
+# Run lint-staged tasks
+npm run lint-staged

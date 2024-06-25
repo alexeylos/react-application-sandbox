@@ -1,20 +1,36 @@
 import './/styles.less';
-import { Button, Flex } from 'antd';
-// import "antd/dist/antd.less";
+import { Card, Flex, Spin } from 'antd';
 import { Typography } from 'antd';
+import { useDashboardData } from './hooks/useDashboardData';
+import Meta from 'antd/es/card/Meta';
 
 const { Title } = Typography;
 
-const App = () => {
+const App: React.FC = () => {
+  const { data, isLoading, isError } = useDashboardData();
+
+  if (isLoading) {
+    return <Spin size="large" />;
+  }
+
+  if (isError) {
+    return <div>Error fetching data</div>;
+  }
+
   return (
     <Flex gap="middle" align="center" vertical>
       <Flex justify="center" align="center">
-        <Title>Hello World!</Title>
+        <Title>Project X!</Title>
       </Flex>
-      <Flex gap="middle" justify="center" align="center">
-        <Button type="primary">Primary Button</Button>
-        <Button type="dashed">Dashed Button</Button>
-      </Flex>
+      <Card
+        title="Dashboard"
+        style={{ backgroundColor: '#ffffff', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}
+      >
+        <Meta
+          title={`User Name: ${data?.user_name}`}
+          description={`Tickets Sold: ${data?.tickets_sold}`}
+        />
+      </Card>
     </Flex>
   );
 };

@@ -1,11 +1,12 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ESLintPlugin = require("eslint-webpack-plugin");
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
-  entry: path.resolve(__dirname, "..", "./src/index.tsx"),
+  entry: path.resolve(__dirname, '..', './src/index.tsx'),
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: ['.tsx', '.ts', '.js'],
   },
   module: {
     rules: [
@@ -14,40 +15,48 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "babel-loader",
+            loader: 'babel-loader',
           },
         ],
       },
       {
         test: /\.less$/,
-        use: ["style-loader", "css-loader", "less-loader"],
+        use: ['style-loader', 'css-loader', 'less-loader'],
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-        type: "asset/resource",
+        type: 'asset/resource',
       },
       {
         test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
-        type: "asset/inline",
+        type: 'asset/inline',
       },
     ],
   },
   output: {
-    path: path.resolve(__dirname, "..", "./build"),
-    filename: "bundle.js",
+    path: path.resolve(__dirname, '..', './build'),
+    filename: 'bundle.js',
   },
   plugins: [
     new ESLintPlugin({
-      extensions: ["js", "jsx", "ts", "tsx"],
+      extensions: ['js', 'jsx', 'ts', 'tsx'],
       // fix: true,
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "..", "./src/index.html"),
+      template: path.resolve(__dirname, '..', './src/index.html'),
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, '..', './src/msw/mockServiceWorker.js'),
+          to: path.resolve(__dirname, '..', './build'),
+        },
+      ],
     }),
   ],
-  stats: "errors-only",
+  stats: 'errors-only',
 };
