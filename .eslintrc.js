@@ -6,6 +6,8 @@ module.exports = {
     'webpack.dev.js',
     'webpack.prod.js',
     'jest.config.js',
+    'coverage/coverage-final.json', // Exclude coverage final report
+    'package.json', // Exclude package.json
   ],
   parser: '@typescript-eslint/parser',
   extends: [

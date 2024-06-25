@@ -72,10 +72,11 @@
     "ts-jest": "^29.1.5"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,css,less,scss,md}": [
-      "npm run prettier",
-      "npm run lint",
-      "git add"
+    "src/**/*.{js,jsx,ts,tsx,json}": [
+      "eslint --fix --max-warnings 0"
+    ],
+    "src/**/*.{css,less,md}": [
+      "prettier --write"
     ]
   },
   "husky": {
