@@ -73,7 +73,9 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json}": [
-      "eslint --fix --max-warnings 0"
+      "eslint --fix --max-warnings 0",
+      "npm run prettier",
+      "npm run lint"
     ],
     "src/**/*.{css,less,md}": [
       "prettier --write"
