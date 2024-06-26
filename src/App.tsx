@@ -22,10 +22,7 @@ const App: React.FC = () => {
       <Flex justify="center" align="center">
         <Title>Project X!</Title>
       </Flex>
-      <Card
-        title="Dashboard"
-        style={{ backgroundColor: '#ffffff', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}
-      >
+      <Card title="Dashboard" className="custom-card">
         <Meta
           title={`User Name: ${data?.user_name}`}
           description={`Tickets Sold: ${data?.tickets_sold}`}
