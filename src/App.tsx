@@ -4,7 +4,6 @@ import { Typography } from 'antd';
 const { Title } = Typography;
 
 const App = () => {
-  // const check = "hello world"
   return (
     <Flex gap="middle" align="center" vertical>
       <Flex justify="center" align="center">

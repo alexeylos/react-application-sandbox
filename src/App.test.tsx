@@ -1,4 +1,3 @@
-
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import App from './App';
@@ -15,12 +14,4 @@ test('renders Primary and Dashed buttons', () => {
   const dashedButton = screen.getByText(/Dashed Button/i);
   expect(primaryButton).toBeInTheDocument();
   expect(dashedButton).toBeInTheDocument();
-});
-
-
-
-test('simple test', () => {
-  render(<div>Hello World</div>);
-  const element = screen.getByText(/Hello World/i);
-  expect(element).toBeInTheDocument();
 });
