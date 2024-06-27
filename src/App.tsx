@@ -1,4 +1,4 @@
-import './/styles.less';
+import './styles.less';
 import { Card, Flex, Spin } from 'antd';
 import { Typography } from 'antd';
 import { useDashboardData } from './hooks/useDashboardData';
@@ -10,7 +10,7 @@ const App: React.FC = () => {
   const { data, isLoading, isError } = useDashboardData();
 
   if (isLoading) {
-    return <Spin size="large" />;
+    return <Spin size="large" data-testid="loading-spinner" />;
   }
 
   if (isError) {

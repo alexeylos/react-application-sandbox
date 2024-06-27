@@ -1,2 +1,2 @@
-# Run lint-staged tasks
-npm run lint-staged
+yarn lint-staged
+yarn test

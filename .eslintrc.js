@@ -6,17 +6,14 @@ module.exports = {
     'webpack.dev.js',
     'webpack.prod.js',
     'jest.config.js',
-    'coverage/coverage-final.json', // Exclude coverage final report
-    'package.json', // Exclude package.json
+    'coverage/coverage-final.json',
+    'package.json',
   ],
   parser: '@typescript-eslint/parser',
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'plugin:jsx-a11y/recommended',
-    // "plugin:import/errors",
-    // "plugin:import/warnings",
-    // "plugin:import/typescript",
     'prettier',
   ],
   parserOptions: {
