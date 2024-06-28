@@ -1,17 +1,14 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from './App';
-import { useDashboardData } from './hooks/useDashboardData';
 import { mocked } from 'jest-mock';
+import { useDashboardData } from './api/dashboard';
 
 jest.mock('./styles.less', () => jest.fn());
 
-jest.mock('./hooks/useDashboardData.ts', () => ({
+jest.mock('./api/dashboard.ts', () => ({
   useDashboardData: jest.fn(),
 }));
-
-const queryClient = new QueryClient();
 
 describe('App Component', () => {
   it('renders loading state', () => {
@@ -21,11 +18,7 @@ describe('App Component', () => {
       data: null,
     });
 
-    render(
-      <QueryClientProvider client={queryClient}>
-        <App />
-      </QueryClientProvider>,
-    );
+    render(<App />);
 
     const spinner = screen.getByTestId('loading-spinner');
     expect(spinner).toBeInTheDocument();
@@ -38,12 +31,7 @@ describe('App Component', () => {
       data: null,
     });
 
-    render(
-      <QueryClientProvider client={queryClient}>
-        <App />
-      </QueryClientProvider>,
-    );
-
+    render(<App />);
     expect(screen.getByText('Error fetching data')).toBeInTheDocument();
   });
 
@@ -54,11 +42,7 @@ describe('App Component', () => {
       data: { user_name: 'Jane Doe', tickets_sold: 100 },
     });
 
-    render(
-      <QueryClientProvider client={queryClient}>
-        <App />
-      </QueryClientProvider>,
-    );
+    render(<App />);
 
     await waitFor(() => {
       expect(screen.getByText('Project X!')).toBeInTheDocument();

@@ -1,6 +1,6 @@
+import { DashboardData } from '@/types/dashboard';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { DashboardData } from '../types/dashboard';
 
 const fetchDashboardData = async () => {
   const response = await axios.get('/api/dashboard');

@@ -15,17 +15,17 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
+    '!src/api/*.ts',
+    '!src/msw/*.{js,ts}',
     '!src/**/*.d.ts',
     '!src/index.tsx',
-    '!src/serviceWorker.ts',
-    '!src/react-app-env.d.ts',
   ],
   coverageThreshold: {
     global: {
-      statements: 20,
-      branches: 20,
-      functions: 20,
-      lines: 20,
+      statements: 80,
+      branches: 80,
+      functions: 80,
+      lines: 80,
     },
   },
   globals: {

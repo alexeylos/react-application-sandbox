@@ -1,8 +1,8 @@
 import './styles.less';
 import { Card, Flex, Spin } from 'antd';
 import { Typography } from 'antd';
-import { useDashboardData } from './hooks/useDashboardData';
 import Meta from 'antd/es/card/Meta';
+import { useDashboardData } from './api/dashboard';
 
 const { Title } = Typography;
 
