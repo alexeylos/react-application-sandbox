@@ -1,16 +1,21 @@
 import './styles.less';
-import { Card, Flex, Spin } from 'antd';
-import { Typography } from 'antd';
-import Meta from 'antd/es/card/Meta';
+import { Spin } from 'antd';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Layout from './components/layout/layout';
 import { useDashboardData } from './api/dashboard';
-
-const { Title } = Typography;
+import { ROUTES } from './constants/common';
+import Home from './pages/Home';
+import Bookings from './pages/Bookings';
 
 const App: React.FC = () => {
-  const { data, isLoading, isError } = useDashboardData();
+  const { isLoading, isError } = useDashboardData();
 
   if (isLoading) {
-    return <Spin size="large" data-testid="loading-spinner" />;
+    return (
+      <div className="loading-container">
+        <Spin size="large" data-testid="loading-spinner" />
+      </div>
+    );
   }
 
   if (isError) {
@@ -18,17 +23,14 @@ const App: React.FC = () => {
   }
 
   return (
-    <Flex gap="middle" align="center" vertical>
-      <Flex justify="center" align="center">
-        <Title>Project X!</Title>
-      </Flex>
-      <Card title="Dashboard" className="custom-card">
-        <Meta
-          title={`User Name: ${data?.user_name}`}
-          description={`Tickets Sold: ${data?.tickets_sold}`}
-        />
-      </Card>
-    </Flex>
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path={ROUTES.HOME} element={<Home />} />
+          <Route path={ROUTES.BOOKINGS} element={<Bookings />} />
+        </Routes>
+      </Layout>
+    </Router>
   );
 };
 

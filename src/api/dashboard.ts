@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const fetchDashboardData = async () => {
   const response = await axios.get('/api/dashboard');
-  return response.data;
+  return response?.data;
 };
 
 export const useDashboardData = () => {
