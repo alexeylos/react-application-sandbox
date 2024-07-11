@@ -1,8 +1,7 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 import { Layout } from 'antd';
 
-jest.mock('../shared/SilderMenu', () => ({
+jest.mock('../shared/SiderMenu', () => ({
   __esModule: true,
   default: jest.fn(() => <div data-testid="silder-menu">Mocked SilderMenu</div>),
 }));

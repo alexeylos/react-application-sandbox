@@ -1,14 +1,14 @@
 import React from 'react';
 import { Layout as LayoutBase } from 'antd';
 import { LayoutProps } from '@/types/router';
-import SilderMenu from '../shared/SilderMenu';
+import SiderMenu from '../shared/SiderMenu';
 
 const { Content } = LayoutBase;
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <LayoutBase>
-      <SilderMenu></SilderMenu>
+      <SiderMenu></SiderMenu>
       <LayoutBase>
         <Content className="child-content">{children}</Content>
       </LayoutBase>

@@ -7,7 +7,7 @@ import type { MenuProps } from 'antd';
 
 const { Sider } = LayoutBase;
 
-const SilderMenu = () => {
+const SiderMenu = () => {
   const navigate = useNavigate();
   const [currentLocation, setCurrentLocation] = useState(window.location.pathname);
 
@@ -16,9 +16,9 @@ const SilderMenu = () => {
     { key: ROUTES.BOOKINGS, icon: <BookOutlined />, label: 'Bookings' },
   ];
 
-  const onClick: MenuProps['onClick'] = (e) => {
-    navigate(e.key);
-    setCurrentLocation(e.key);
+  const onClick: MenuProps['onClick'] = (event) => {
+    navigate(event.key);
+    setCurrentLocation(event.key);
   };
 
   return (
@@ -31,7 +31,6 @@ const SilderMenu = () => {
         <Menu
           theme="dark"
           onClick={onClick}
-          defaultOpenKeys={['sub1']}
           selectedKeys={[currentLocation]}
           mode="inline"
           items={menuItems}
@@ -41,4 +40,4 @@ const SilderMenu = () => {
   );
 };
 
-export default SilderMenu;
+export default SiderMenu;

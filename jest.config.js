@@ -3,8 +3,7 @@ module.exports = {
   testEnvironment: 'jsdom',
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
-    '^.+\\.jsx?$': 'esbuild-jest', // or another appropriate transformer
-    // '\\.(css|less)$': 'identity-obj-proxy',
+    '^.+\\.jsx?$': 'esbuild-jest', 
   },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',

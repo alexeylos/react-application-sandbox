@@ -1,19 +1,18 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import SilderMenu from './SilderMenu';
+import SiderMenu from './SiderMenu';
 
-// Mock the location object for testing
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  useLocation: jest.fn().mockReturnValue({ pathname: '/home' }), // Replace with a valid route
+  useLocation: jest.fn().mockReturnValue({ pathname: '/home' }),
 }));
 
 describe('SilderMenu', () => {
   it('should render the logo and menu items', () => {
     render(
       <Router>
-        <SilderMenu />
+        <SiderMenu />
       </Router>,
     );
 
@@ -34,7 +33,7 @@ describe('SilderMenu', () => {
   it('should update selected menu item on navigation', async () => {
     render(
       <Router>
-        <SilderMenu />
+        <SiderMenu />
       </Router>,
     );
 

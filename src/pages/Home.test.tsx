@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Home from './Home'; // Adjust the path if needed
+import Home from './Home';
 
 describe('Home Component', () => {
   it('renders "Home" text', () => {
