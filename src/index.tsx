@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ConfigProvider, theme } from 'antd';
 
 const queryClient = new QueryClient();
 
@@ -19,7 +20,16 @@ deferRender().then(() => {
   const root = createRoot(rootElement);
   root.render(
     <QueryClientProvider client={queryClient}>
-      <App />
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: '#7f00ff',
+          },
+          algorithm: theme.darkAlgorithm,
+        }}
+      >
+        <App />
+      </ConfigProvider>
     </QueryClientProvider>,
   );
 });

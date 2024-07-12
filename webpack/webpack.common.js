@@ -21,7 +21,20 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader'],
+        use: [
+          'style-loader',
+          'css-loader',
+          'less-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+                paths: [path.resolve(__dirname, 'node_modules')],
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,
@@ -44,7 +57,6 @@ module.exports = {
   plugins: [
     new ESLintPlugin({
       extensions: ['js', 'jsx', 'ts', 'tsx'],
-      // fix: true,
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '..', './src/index.html'),
