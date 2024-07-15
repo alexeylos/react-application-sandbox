@@ -1,4 +1,8 @@
 export interface DashboardData {
-  user_name: string;
-  tickets_sold: number;
+  name: string;
+  pax: number;
+  pax_delta: number;
+  gmv: number;
+  gmv_delta: number;
+  currency: string;
 }
