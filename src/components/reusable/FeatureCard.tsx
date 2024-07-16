@@ -7,7 +7,7 @@ import './FeatureCard.less';
 const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, buttonLink }) => {
   const navigate = useNavigate();
 
-  const naviagteUrl = (url: string) => {
+  const navigateUrl = (url: string) => {
     navigate(url);
   };
   return (
@@ -21,7 +21,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, but
 
             {buttonLink ? (
               <Button
-                onClick={() => naviagteUrl(buttonLink)}
+                onClick={() => navigateUrl(buttonLink)}
                 className="btn-style"
                 type="primary"
                 icon={<LinkOutlined />}
