@@ -1,10 +1,10 @@
 import { render, screen, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { mocked } from 'jest-mock';
 import { useDashboardData } from '../api/dashboard';
 import Home from './Home';
 
-jest.mock('./styles.less', () => jest.fn());
+jest.mock('./Home.less', () => jest.fn());
 
 jest.mock('../api/dashboard.ts', () => ({
   useDashboardData: jest.fn(),
@@ -18,7 +18,11 @@ describe('App Component', () => {
       data: null,
     });
 
-    render(<Home />);
+    render(
+      <Router>
+        <Home />
+      </Router>,
+    );
 
     const spinner = screen.getByTestId('loading-spinner');
     expect(spinner).toBeInTheDocument();
@@ -31,7 +35,12 @@ describe('App Component', () => {
       data: null,
     });
 
-    render(<Home />);
+    render(
+      <Router>
+        <Home />
+      </Router>,
+    );
+
     expect(screen.getByText('Error fetching data')).toBeInTheDocument();
   });
 
@@ -49,7 +58,11 @@ describe('App Component', () => {
       },
     });
 
-    render(<Home />);
+    render(
+      <Router>
+        <Home />
+      </Router>,
+    );
 
     await waitFor(() => {
       expect(screen.getByText('John Doe !')).toBeInTheDocument();

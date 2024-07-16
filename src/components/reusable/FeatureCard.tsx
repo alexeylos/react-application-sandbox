@@ -1,30 +1,15 @@
 import { Card, Button } from 'antd';
 import { LinkOutlined } from '@ant-design/icons';
 import { FeatureCardProps } from '@/types/reuseableCardProps';
+import { useNavigate } from 'react-router-dom';
+import './FeatureCard.less';
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, buttonLink }) => {
-  const renderButton = () => {
-    if (buttonLink) {
-      return (
-        <Button
-          className="btn-style"
-          type="primary"
-          href={buttonLink}
-          icon={<LinkOutlined />}
-          block={!!buttonLink}
-        >
-          Go to the Page
-        </Button>
-      );
-    } else {
-      return (
-        <Button className="btn-style" disabled block>
-          Soon
-        </Button>
-      );
-    }
-  };
+  const navigate = useNavigate();
 
+  const naviagteUrl = (url: string) => {
+    navigate(url);
+  };
   return (
     <div>
       <Card>
@@ -33,7 +18,22 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, but
           <div className="right-content">
             <div className="title">{title}</div>
             <div className="description">{description}</div>
-            {renderButton()}
+
+            {buttonLink ? (
+              <Button
+                onClick={() => naviagteUrl(buttonLink)}
+                className="btn-style"
+                type="primary"
+                icon={<LinkOutlined />}
+                block={!!buttonLink}
+              >
+                Go to the Page
+              </Button>
+            ) : (
+              <Button className="btn-style" disabled block>
+                Soon
+              </Button>
+            )}
           </div>
         </div>
       </Card>

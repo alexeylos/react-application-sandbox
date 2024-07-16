@@ -5,6 +5,7 @@ import { Spin } from 'antd';
 import React from 'react';
 import { BookOutlined, FundOutlined, PieChartOutlined } from '@ant-design/icons';
 import { ROUTES } from '../constants/common';
+import './Home.less';
 
 const Home: React.FC = () => {
   const { data, isLoading, isError } = useDashboardData();

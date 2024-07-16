@@ -2,6 +2,9 @@ import { render } from '@testing-library/react';
 import InfoCard from './InfoCard';
 import { ReusableCardProps } from '@/types/reuseableCardProps';
 
+jest.mock('./InfoCard.less', () => jest.fn());
+jest.mock('../../asset/dollar.svg', () => 'test-file-stub');
+
 jest.mock('../../utils/common', () => ({
   getDeltaTagColor: jest.fn((delta) => (delta > 0 ? 'green' : 'red')),
 }));

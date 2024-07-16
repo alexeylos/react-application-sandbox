@@ -26,7 +26,6 @@ describe('SilderMenu', () => {
     expect(homeMenuItem).toBeInTheDocument();
     const bookingsMenuItem = screen.getByText((text) => text.trim() === 'Bookings');
     expect(bookingsMenuItem).toBeInTheDocument();
-
     expect(homeMenuItem).toHaveClass('ant-menu-title-content');
   });
 
