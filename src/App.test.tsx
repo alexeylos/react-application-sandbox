@@ -22,7 +22,15 @@ jest.mock('antd', () => {
   };
 });
 
+jest.mock('./api/dashboard', () => ({
+  useDashboardData: () => ({
+    data: { user: 'John Doe' },
+    isLoading: false,
+    error: null,
+  }),
+}));
+
 test('renders Home page on initial render', () => {
   render(<App />);
-  expect(screen.getByText('Home')).toBeInTheDocument();
+  expect(screen.getByText('Welcome,')).toBeInTheDocument();
 });

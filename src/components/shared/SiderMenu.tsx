@@ -1,15 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Layout as LayoutBase, Menu } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { HomeOutlined, BookOutlined } from '@ant-design/icons';
 import { ROUTES } from '../../constants/common';
 import type { MenuProps } from 'antd';
+import './SiderMenu.less';
 
 const { Sider } = LayoutBase;
 
 const SiderMenu = () => {
   const navigate = useNavigate();
-  const [currentLocation, setCurrentLocation] = useState(window.location.pathname);
+  const location = useLocation();
+  const [currentLocation, setCurrentLocation] = useState(location.pathname);
 
   const menuItems = [
     { key: ROUTES.HOME, icon: <HomeOutlined />, label: 'Home' },
@@ -20,6 +22,10 @@ const SiderMenu = () => {
     navigate(event.key);
     setCurrentLocation(event.key);
   };
+
+  useEffect(() => {
+    setCurrentLocation(location.pathname);
+  }, [location]);
 
   return (
     <div className="custom-sider">

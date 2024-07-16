@@ -3,12 +3,13 @@ module.exports = {
   testEnvironment: 'jsdom',
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
-    '^.+\\.jsx?$': 'esbuild-jest', 
+    '^.+\\.jsx?$': 'esbuild-jest',
   },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
     '^antd/es/(.*)$': 'antd/lib/$1',
     '\\.(css|less)$': 'identity-obj-proxy',
+    '\\.svg$': 'identity-obj-proxy',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   collectCoverage: true,

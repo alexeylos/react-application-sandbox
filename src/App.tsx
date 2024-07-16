@@ -2,8 +2,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ROUTES } from './constants/common';
 import Home from './pages/Home';
 import Bookings from './pages/Bookings';
-import Layout from './components/layout/Layout';
 import './styles.less';
+import Layout from './components/layout/layout';
 
 const App: React.FC = () => {
   return (
