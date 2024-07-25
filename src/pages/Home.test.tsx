@@ -1,16 +1,15 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { mocked } from 'jest-mock';
 import { useDashboardData } from '../api/dashboard';
 import Home from './Home';
 
 jest.mock('./Home.less', () => jest.fn());
-
-jest.mock('../api/dashboard.ts', () => ({
+jest.mock('../api/dashboard', () => ({
   useDashboardData: jest.fn(),
 }));
 
-describe('App Component', () => {
+describe('Home Component', () => {
   it('renders loading state', () => {
     (mocked(useDashboardData) as unknown as jest.Mock).mockReturnValue({
       isLoading: true,
@@ -44,16 +43,16 @@ describe('App Component', () => {
     expect(screen.getByText('Error fetching data')).toBeInTheDocument();
   });
 
-  it('renders data when request is successful', async () => {
+  it('renders loaded state with data', () => {
     (mocked(useDashboardData) as unknown as jest.Mock).mockReturnValue({
       isLoading: false,
       isError: false,
       data: {
         name: 'John Doe',
-        pax: 2043,
-        pax_delta: 100,
-        gmv: 340302,
-        gmv_delta: -10000,
+        pax: 123,
+        pax_delta: 10,
+        gmv: 1000,
+        gmv_delta: 50,
         currency: 'USD',
       },
     });
@@ -64,8 +63,14 @@ describe('App Component', () => {
       </Router>,
     );
 
-    await waitFor(() => {
-      expect(screen.getByText('John Doe !')).toBeInTheDocument();
-    });
+    expect(
+      screen.getByText((content, element) => {
+        return element?.tagName.toLowerCase() === 'span' && content.includes('John Doe');
+      }),
+    ).toBeInTheDocument();
+    expect(screen.getByText('PAX booked')).toBeInTheDocument();
+    expect(screen.getByText('123')).toBeInTheDocument();
+    expect(screen.getByText('GMV')).toBeInTheDocument();
+    expect(screen.getByText('1000')).toBeInTheDocument();
   });
 });

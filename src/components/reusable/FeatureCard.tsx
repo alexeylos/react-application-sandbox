@@ -12,8 +12,8 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, but
   };
   return (
     <div>
-      <Card>
-        <div className="feature-card">
+      <Card className="feature-card">
+        <div className="card-content">
           <div className="left-content">{icon}</div>
           <div className="right-content">
             <div className="title">{title}</div>
