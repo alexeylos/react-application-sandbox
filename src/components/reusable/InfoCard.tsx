@@ -3,6 +3,7 @@ import { getDeltaTagColor } from '../../utils/common';
 import { Card, Tag } from 'antd';
 import { RiseOutlined, FallOutlined } from '@ant-design/icons';
 import './InfoCard.less';
+import dollarImg from '../../asset/dollar.svg';
 
 const InfoCard: React.FC<ReusableCardProps> = ({ title, value, delta, currency }) => {
   return (
@@ -10,11 +11,7 @@ const InfoCard: React.FC<ReusableCardProps> = ({ title, value, delta, currency }
       <Card className="custom-card">
         <div className="title">{title}</div>
         <div className="value">
-          {currency === 'USD' ? (
-            <img src="../../asset/dollar.svg" alt="Dollar icon" srcSet="" />
-          ) : (
-            ''
-          )}
+          {currency === 'USD' ? <img src={dollarImg} alt="Dollar icon" srcSet="" /> : ''}
           <span>{value}</span>
         </div>
         <Tag color={getDeltaTagColor(delta)}>
