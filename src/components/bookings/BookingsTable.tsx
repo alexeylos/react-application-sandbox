@@ -1,19 +1,20 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import { Booking } from '../../types/booking';
-import { Spin, Table, Tag } from 'antd';
+import { Table, Tag } from 'antd';
 import { useBookings } from '../../api/bookings';
+import { ColumnsType } from 'antd/es/table';
 
-const columns = [
+export const columns: ColumnsType<Booking> = [
   {
     title: 'Booking №',
     dataIndex: 'id',
     key: 'id',
-    sorter: (a: Booking, b: Booking) => a?.id.localeCompare(b?.id),
+    sorter: (a: Booking, b: Booking) => a.id.localeCompare(b.id),
     render: (text: string, record: Booking) => (
       <>
         <div>{text}</div>
-        <div>{dayjs(record?.departure_dttm).format('YYYY-MM-DD HH:mm')}</div>
+        <div>{dayjs(record.departure_dttm).format('YYYY-MM-DD HH:mm')}</div>
       </>
     ),
   },
@@ -21,7 +22,7 @@ const columns = [
     title: 'Carrier name',
     dataIndex: 'carrier_name',
     key: 'carrier_name',
-    sorter: (a: Booking, b: Booking) => a?.carrier_name.localeCompare(b?.carrier_name),
+    sorter: (a: Booking, b: Booking) => a.carrier_name.localeCompare(b.carrier_name),
   },
   {
     title: 'Passenger',
@@ -36,7 +37,7 @@ const columns = [
       <>
         <div>{text}</div>
         <div data-testid={`departure-${record.id}`}>
-          {dayjs(record?.departure_dttm).format('YYYY-MM-DD HH:mm')}
+          {dayjs(record.departure_dttm).format('YYYY-MM-DD HH:mm')}
         </div>
       </>
     ),
@@ -49,7 +50,7 @@ const columns = [
       <>
         <div>{text}</div>
         <div data-testid={`arrival-${record.id}`}>
-          {dayjs(record?.arrival_dttm).format('YYYY-MM-DD HH:mm')}
+          {dayjs(record.arrival_dttm).format('YYYY-MM-DD HH:mm')}
         </div>
       </>
     ),
@@ -58,11 +59,11 @@ const columns = [
     title: 'Total price',
     dataIndex: 'total_price',
     key: 'total_price',
-    sorter: (a: Booking, b: Booking) => parseFloat(a?.total_price) - parseFloat(b?.total_price),
+    sorter: (a: Booking, b: Booking) => parseFloat(a.total_price) - parseFloat(b.total_price),
     render: (text: string, record: Booking) => {
       const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
-        currency: record?.currency,
+        currency: record.currency,
       });
       return <span>{formatter.format(parseFloat(text))}</span>;
     },
@@ -72,7 +73,7 @@ const columns = [
     dataIndex: 'status',
     key: 'status',
     render: (text: string) => (
-      <Tag color={text === 'active' ? 'green' : 'red'}>{text?.toUpperCase()}</Tag>
+      <Tag color={text === 'active' ? 'green' : 'red'}>{text.toUpperCase()}</Tag>
     ),
   },
 ];
@@ -80,16 +81,18 @@ const columns = [
 const BookingsTable: React.FC = () => {
   const { data, isLoading, isError } = useBookings();
 
-  if (isLoading) {
-    return <Spin size="large" data-testid="loading-spinner" />;
-  }
-
   if (isError) {
     return <div>Error fetching data</div>;
   }
 
   return (
-    <Table columns={columns} dataSource={data || []} pagination={{ pageSize: 10 }} rowKey="id" />
+    <Table
+      columns={columns}
+      dataSource={data || []}
+      pagination={{ pageSize: 10 }}
+      loading={isLoading}
+      rowKey="id"
+    />
   );
 };
 
