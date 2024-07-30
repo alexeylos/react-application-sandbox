@@ -32,7 +32,7 @@ const HamburgerMenu: React.FC = () => {
   return (
     <div className="hamburger-menu">
       <Button type="primary" onClick={showDrawer} icon={<MenuOutlined />} />
-      <Drawer placement="left" onClose={onClose} open={visible}>
+      <Drawer className="custom-drawer" placement="left" onClose={onClose} open={visible}>
         <div className="web-logo">
           <img src="https://i.ibb.co/Xbn3Bdm/logo1.png" alt="website logo" />
         </div>

@@ -2,7 +2,7 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   transform: {
-    '^.+\\.tsx?$': 'ts-jest',
+    '^.+\\.tsx?$': ['ts-jest', { isolatedModules: true }],
     '^.+\\.jsx?$': 'esbuild-jest',
   },
   moduleNameMapper: {
@@ -12,6 +12,7 @@ module.exports = {
     '\\.svg$': 'identity-obj-proxy',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  coveragePathIgnorePatterns: ['/node_modules/', '/src/lib/'],
   collectCoverage: true,
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
@@ -26,11 +27,6 @@ module.exports = {
       branches: 80,
       functions: 80,
       lines: 80,
-    },
-  },
-  globals: {
-    'ts-jest': {
-      isolatedModules: true,
     },
   },
 };
