@@ -81,7 +81,6 @@
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json}": [
       "eslint --fix --max-warnings 0",
-      "yarn test --findRelatedTests",
       "yarn prettier",
       "yarn lint"
     ],

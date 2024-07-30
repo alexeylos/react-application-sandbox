@@ -45,7 +45,6 @@ describe('HamburgerMenu component', () => {
 
   test('renders HamburgerMenu component', () => {
     const { getByTestId } = render(<HamburgerMenu />);
-
     const menuButton = getByTestId('mock-button');
     expect(menuButton).toBeInTheDocument();
   });
@@ -58,6 +57,13 @@ describe('HamburgerMenu component', () => {
     expect(drawer).toHaveStyle('display: none');
     fireEvent.click(getByTestId('mock-button'));
     expect(drawer).toHaveStyle('display: none');
+  });
+
+  test('renders the logo image', () => {
+    const { getByAltText } = render(<HamburgerMenu />);
+    const logoImage = getByAltText('website logo');
+    expect(logoImage).toBeInTheDocument();
+    expect(logoImage).toHaveAttribute('src', 'https://i.ibb.co/Xbn3Bdm/logo1.png');
   });
 
   test('selects menu item when clicked', () => {

@@ -26,13 +26,7 @@ const Home: React.FC = () => {
 
       <div className="card-container">
         <Row gutter={[16, 16]}>
-          <Col
-            xs={{ span: 24 }}
-            sm={{ span: 12 }}
-            md={{ span: 12 }}
-            lg={{ span: 12 }}
-            xl={{ span: 8 }}
-          >
+          <Col xs={24} sm={12} xl={8}>
             <InfoCard
               title="PAX booked"
               value={data?.pax ?? 0}
@@ -41,13 +35,7 @@ const Home: React.FC = () => {
             />
           </Col>
 
-          <Col
-            xs={{ span: 24 }}
-            sm={{ span: 12 }}
-            md={{ span: 12 }}
-            lg={{ span: 12 }}
-            xl={{ span: 8 }}
-          >
+          <Col xs={24} sm={12} xl={8}>
             <InfoCard
               title="GMV"
               value={data?.gmv ?? 0}
@@ -64,13 +52,7 @@ const Home: React.FC = () => {
 
       <div className="card-container">
         <Row gutter={[16, 16]}>
-          <Col
-            xs={{ span: 24 }}
-            sm={{ span: 12 }}
-            md={{ span: 12 }}
-            lg={{ span: 12 }}
-            xl={{ span: 8 }}
-          >
+          <Col xs={24} sm={12} xl={8}>
             <FeatureCard
               icon={<BookOutlined />}
               title="Booking"
@@ -79,13 +61,7 @@ const Home: React.FC = () => {
             />
           </Col>
 
-          <Col
-            xs={{ span: 24 }}
-            sm={{ span: 12 }}
-            md={{ span: 12 }}
-            lg={{ span: 12 }}
-            xl={{ span: 8 }}
-          >
+          <Col xs={24} sm={12} xl={8}>
             <FeatureCard
               icon={<FundOutlined />}
               title="Trading"
@@ -93,13 +69,7 @@ const Home: React.FC = () => {
             />
           </Col>
 
-          <Col
-            xs={{ span: 24 }}
-            sm={{ span: 12 }}
-            md={{ span: 12 }}
-            lg={{ span: 12 }}
-            xl={{ span: 8 }}
-          >
+          <Col xs={24} sm={12} xl={8}>
             <FeatureCard
               icon={<PieChartOutlined />}
               title="Settings"
