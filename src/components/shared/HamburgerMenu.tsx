@@ -1,12 +1,21 @@
+import { Drawer, Button, Menu } from 'antd';
+import { MenuOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
-import { Layout as LayoutBase, Menu } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
 import type { MenuProps } from 'antd';
-import './SiderMenu.less';
 import menuItems from '../../constants/menuItems';
-const { Sider } = LayoutBase;
+import './HamburgerMenu.less';
 
-const SiderMenu = () => {
+const HamburgerMenu: React.FC = () => {
+  const [visible, setVisible] = useState(false);
+  const showDrawer = () => {
+    setVisible(true);
+  };
+
+  const onClose = () => {
+    setVisible(false);
+  };
+
   const navigate = useNavigate();
   const location = useLocation();
   const [currentLocation, setCurrentLocation] = useState(location.pathname);
@@ -21,12 +30,12 @@ const SiderMenu = () => {
   }, [location]);
 
   return (
-    <div className="custom-sider">
-      <Sider>
+    <div className="hamburger-menu">
+      <Button type="primary" onClick={showDrawer} icon={<MenuOutlined />} />
+      <Drawer className="custom-drawer" placement="left" onClose={onClose} open={visible}>
         <div className="web-logo">
           <img src="https://i.ibb.co/Xbn3Bdm/logo1.png" alt="website logo" />
         </div>
-
         <Menu
           theme="dark"
           onClick={onClick}
@@ -34,9 +43,9 @@ const SiderMenu = () => {
           mode="inline"
           items={menuItems}
         />
-      </Sider>
+      </Drawer>
     </div>
   );
 };
 
-export default SiderMenu;
+export default HamburgerMenu;
