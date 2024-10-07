@@ -1,4 +1,5 @@
 import { HttpResponse, http } from 'msw';
+import { bookings } from '../msw/bookingMockData';
 
 export const handlers = [
   http.get('/api/dashboard', () => {
@@ -10,5 +11,8 @@ export const handlers = [
       gmv_delta: -10000,
       currency: 'USD',
     });
+  }),
+  http.get('/api/bookings', () => {
+    return HttpResponse.json(bookings);
   }),
 ];
