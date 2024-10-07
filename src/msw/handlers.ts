@@ -1,5 +1,5 @@
-import { bookings } from '../utils/bookingMockData';
 import { HttpResponse, http } from 'msw';
+import { bookings } from '../msw/bookingMockData';
 
 export const handlers = [
   http.get('/api/dashboard', () => {
