@@ -1,16 +1,26 @@
-import React from 'react';
 import { Layout as LayoutBase } from 'antd';
 import { LayoutProps } from '@/types/router';
 import SiderMenu from '../shared/SiderMenu';
+import HamburgerMenu from '../shared/HamburgerMenu';
+import { useBreakpoint } from '../../lib/responsive';
 
 const { Content } = LayoutBase;
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const { lg } = useBreakpoint();
   return (
     <LayoutBase>
-      <SiderMenu></SiderMenu>
+      {lg && <SiderMenu></SiderMenu>}
       <LayoutBase>
-        <Content className="child-content">{children}</Content>
+        <Content className="child-content">
+          {!lg && (
+            <div className="hamburger">
+              {' '}
+              <HamburgerMenu></HamburgerMenu>
+            </div>
+          )}
+          {children}
+        </Content>
       </LayoutBase>
     </LayoutBase>
   );
