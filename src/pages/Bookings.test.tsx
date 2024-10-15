@@ -1,18 +1,19 @@
 import { render, screen } from '@testing-library/react';
 import BookingsTable, { columns } from '../components/bookings/BookingsTable';
 import { mocked } from 'jest-mock';
-import { useBookings } from '../api/bookings';
+import { useBookings } from '@/api/bookings';
 import Bookings from './Bookings';
 import { CompareFn } from 'antd/es/table/interface';
-import { MockTableDataType } from '@/types/booking';
+import { Booking } from '@/types/booking';
 
 jest.mock('../api/bookings.ts', () => ({
   useBookings: jest.fn(),
 }));
 
-const mockData = [
+const mockData: Booking[] = [
   {
     id: '1',
+    booking_dttm: '2024-06-06T10:00:00Z',
     carrier_name: 'Carrier A',
     passenger: 'John Doe',
     departure_station: 'Station A',
@@ -25,6 +26,7 @@ const mockData = [
   },
   {
     id: '2',
+    booking_dttm: '2024-06-06T10:00:00Z',
     carrier_name: 'Carrier B',
     passenger: 'Jane Doe',
     departure_station: 'Station C',
@@ -37,6 +39,7 @@ const mockData = [
   },
   {
     id: '3',
+    booking_dttm: '2024-06-06T10:00:00Z',
     carrier_name: 'Carrier C',
     passenger: 'Alice Smith',
     departure_station: 'Station E',
@@ -49,6 +52,7 @@ const mockData = [
   },
   {
     id: '4',
+    booking_dttm: '2024-06-06T10:00:00Z',
     carrier_name: 'Carrier D',
     passenger: 'Bob Johnson',
     departure_station: 'Station G',
@@ -61,6 +65,7 @@ const mockData = [
   },
   {
     id: '5',
+    booking_dttm: '2024-06-06T10:00:00Z',
     carrier_name: 'Carrier E',
     passenger: 'Charlie Brown',
     departure_station: 'Station I',
@@ -73,6 +78,7 @@ const mockData = [
   },
   {
     id: '6',
+    booking_dttm: '2024-06-06T10:00:00Z',
     carrier_name: 'Carrier F',
     passenger: 'David Wilson',
     departure_station: 'Station K',
@@ -85,6 +91,7 @@ const mockData = [
   },
   {
     id: '7',
+    booking_dttm: '2024-06-06T10:00:00Z',
     carrier_name: 'Carrier G',
     passenger: 'Eve Adams',
     departure_station: 'Station M',
@@ -97,6 +104,7 @@ const mockData = [
   },
   {
     id: '8',
+    booking_dttm: '2024-06-06T10:00:00Z',
     carrier_name: 'Carrier H',
     passenger: 'Frank Miller',
     departure_station: 'Station O',
@@ -190,19 +198,17 @@ describe('BookingsTable', () => {
   });
 
   it('sorts by Booking №', () => {
-    const sorter = columns.find(({ key }) => key === 'id').sorter as CompareFn<MockTableDataType>;
+    const sorter = columns.find(({ key }) => key === 'id').sorter as CompareFn<Booking>;
     expect(sorter(mockData[0], mockData[1])).toEqual(-1);
     expect(sorter(mockData[1], mockData[0])).toEqual(1);
   });
   it('sorts by Carrier', () => {
-    const sorter = columns.find(({ key }) => key === 'carrier_name')
-      .sorter as CompareFn<MockTableDataType>;
+    const sorter = columns.find(({ key }) => key === 'carrier_name').sorter as CompareFn<Booking>;
     expect(sorter(mockData[0], mockData[1])).toEqual(-1);
     expect(sorter(mockData[1], mockData[0])).toEqual(1);
   });
   it('sorts by Total price', () => {
-    const sorter = columns.find(({ key }) => key === 'total_price')
-      .sorter as CompareFn<MockTableDataType>;
+    const sorter = columns.find(({ key }) => key === 'total_price').sorter as CompareFn<Booking>;
     expect(sorter(mockData[0], mockData[1])).toBeLessThan(0);
     expect(sorter(mockData[1], mockData[0])).toBeGreaterThan(0);
   });

@@ -6,7 +6,7 @@ import { ConfigProvider, theme } from 'antd';
 const queryClient = new QueryClient();
 
 async function deferRender() {
-  const { worker } = await import('./msw/browser');
+  const { worker } = await import('./msw/browser-worker');
   return worker.start();
 }
 
