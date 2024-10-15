@@ -1,9 +1,9 @@
-import React from 'react';
-import dayjs from 'dayjs';
-import { Booking } from '../../types/booking';
 import { Table, Tag } from 'antd';
-import { useBookings } from '../../api/bookings';
 import { ColumnsType } from 'antd/es/table';
+import dayjs from 'dayjs';
+import React from 'react';
+import { useBookings } from '../../api/bookings';
+import { Booking } from '../../types/booking';
 
 export const columns: ColumnsType<Booking> = [
   {
