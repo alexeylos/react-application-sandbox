@@ -1,10 +1,10 @@
+import { MockTableDataType } from '@/types/booking';
 import { render, screen } from '@testing-library/react';
-import BookingsTable, { columns } from '../components/bookings/BookingsTable';
+import { CompareFn } from 'antd/es/table/interface';
 import { mocked } from 'jest-mock';
 import { useBookings } from '../api/bookings';
+import BookingsTable, { columns } from '../components/bookings/BookingsTable';
 import Bookings from './Bookings';
-import { CompareFn } from 'antd/es/table/interface';
-import { MockTableDataType } from '@/types/booking';
 
 jest.mock('../api/bookings.ts', () => ({
   useBookings: jest.fn(),
