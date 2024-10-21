@@ -14,7 +14,6 @@ function BookingListMobileView() {
     <Row gutter={[32, 32]}>
       {data?.map((booking) => (
         <Col key={booking.id} xs={24} sm={12} xl={8}>
-          {' '}
           <BookingItemCard {...booking} />
         </Col>
       ))}

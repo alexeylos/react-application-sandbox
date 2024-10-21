@@ -23,13 +23,13 @@ const BookingItemCard: React.FC<Booking> = ({
         <Row gutter={[0, 16]}>
           <Col span={18}>
             <p className="passenger-name">
-              <strong>{passenger}</strong>{' '}
+              <strong>{passenger}</strong>
             </p>
             <p className="booking-dttm">
-              <ClockCircleOutlined /> {dayjs(booking_dttm).format('YYYY-MM-DD HH:mm')},{' '}
-              {carrier_name}
+              <ClockCircleOutlined />{' '}
+              {`${dayjs(booking_dttm).format('YYYY-MM-DD HH:mm')}, ${carrier_name}`}
             </p>
-            <div className="">
+            <div>
               <div className="departure">
                 <span className="station-name">{departure_station}</span>
                 <span className="time-date">
@@ -37,7 +37,7 @@ const BookingItemCard: React.FC<Booking> = ({
                 </span>
               </div>
 
-              <div className="">
+              <div>
                 <ArrowDownOutlined />
               </div>
 
