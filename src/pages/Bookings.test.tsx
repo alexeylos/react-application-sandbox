@@ -1,10 +1,10 @@
-import { render, screen } from '@testing-library/react';
-import BookingsTable, { columns } from '../components/bookings/BookingsTable';
-import { mocked } from 'jest-mock';
 import { useBookings } from '@/api/bookings';
-import Bookings from './Bookings';
-import { CompareFn } from 'antd/es/table/interface';
+import BookingsTable, { columns } from '@/components/bookings/BookingsTable';
 import { Booking } from '@/types/booking';
+import { render, screen } from '@testing-library/react';
+import { CompareFn } from 'antd/es/table/interface';
+import { mocked } from 'jest-mock';
+import Bookings from './Bookings';
 
 jest.mock('../api/bookings.ts', () => ({
   useBookings: jest.fn(),

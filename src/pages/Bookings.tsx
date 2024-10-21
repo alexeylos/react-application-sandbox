@@ -1,15 +1,17 @@
-import { Space } from 'antd';
-import BookingsTable from '../components/bookings/BookingsTable';
-import React from 'react';
 import Title from 'antd/es/typography/Title';
-
+import React from 'react';
+import BookingListMobileView from '../components/bookings/BookingListMobileView';
+import BookingsTable from '../components/bookings/BookingsTable';
+import { useBreakpoint } from '../lib/responsive';
 const Bookings: React.FC = () => {
+  const { lg } = useBreakpoint();
   return (
     <>
-      <Space direction="vertical" size="large">
+      <>
         <Title level={3}>Bookings</Title>
-        <BookingsTable />
-      </Space>
+        {lg && <BookingsTable />}
+        {!lg && <BookingListMobileView />}
+      </>
     </>
   );
 };
