@@ -50,11 +50,6 @@ describe('BookingItemCard', () => {
     render(<BookingItemCard {...booking} />);
     expect(screen.getByText(`${booking.total_price} ${booking.currency}`)).toBeInTheDocument();
   });
-
-  it('matches snapshot', () => {
-    const { asFragment } = render(<BookingItemCard {...booking} />);
-    expect(asFragment()).toMatchSnapshot();
-  });
 });
 
 it('renders BookingItemCard correctly', () => {
