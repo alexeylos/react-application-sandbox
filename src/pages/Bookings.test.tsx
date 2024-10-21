@@ -111,7 +111,7 @@ const mockData: Booking[] = [
     arrival_station: 'Station P',
     departure_dttm: '2024-07-17T07:00:00Z',
     arrival_dttm: '2024-07-17T09:00:00Z',
-    total_price: '170.00',
+    total_price: '180.00',
     currency: 'USD',
     status: 'cancelled',
   },
