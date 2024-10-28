@@ -1,4 +1,5 @@
 import { HttpResponse, http } from 'msw';
+import { bookingsDetails } from '../msw/bookingDetailsMockData';
 import { bookings } from '../msw/bookingMockData';
 
 export const handlers = [
@@ -14,5 +15,15 @@ export const handlers = [
   }),
   http.get('/api/bookings', () => {
     return HttpResponse.json(bookings);
+  }),
+
+  http.get('/api/bookings/:booking_id', (req) => {
+    const { booking_id } = req.params;
+    const bookingDetail = bookingsDetails.find((booking) => booking.id === booking_id);
+    if (bookingDetail) {
+      return HttpResponse.json(bookingDetail);
+    } else {
+      return HttpResponse.json({ error: 'Booking not found' }, { status: 404 });
+    }
   }),
 ];

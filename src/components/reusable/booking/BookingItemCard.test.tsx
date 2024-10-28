@@ -1,7 +1,13 @@
 import { Booking } from '@/types/booking';
 import { render, screen } from '@testing-library/react';
 import dayjs from 'dayjs';
+import { MemoryRouter } from 'react-router-dom';
 import BookingItemCard from './BookingItemCard';
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: jest.fn(),
+}));
 
 const booking: Booking = {
   id: 'B1',
@@ -19,7 +25,11 @@ const booking: Booking = {
 
 describe('BookingItemCard', () => {
   it('renders BookingItemCard correctly', () => {
-    render(<BookingItemCard {...booking} />);
+    render(
+      <MemoryRouter>
+        <BookingItemCard {...booking} />
+      </MemoryRouter>,
+    );
     expect(screen.getByText(booking.passenger)).toBeInTheDocument();
     expect(screen.getByText(new RegExp(booking.carrier_name, 'i'))).toBeInTheDocument();
     expect(screen.getByText(`${booking.total_price} USD`)).toBeInTheDocument();
@@ -27,7 +37,11 @@ describe('BookingItemCard', () => {
   });
 
   it('displays formatted departure and arrival times correctly', () => {
-    render(<BookingItemCard {...booking} />);
+    render(
+      <MemoryRouter>
+        <BookingItemCard {...booking} />
+      </MemoryRouter>,
+    );
     expect(
       screen.getByText(dayjs(booking.departure_dttm).format('YYYY-MM-DD HH:mm')),
     ).toBeInTheDocument();
@@ -37,25 +51,29 @@ describe('BookingItemCard', () => {
   });
 
   it('displays the correct status color based on status', () => {
-    render(<BookingItemCard {...booking} />);
+    render(
+      <MemoryRouter>
+        <BookingItemCard {...booking} />
+      </MemoryRouter>,
+    );
     const statusTag = screen.getByText(booking.status.toUpperCase());
     expect(statusTag).toHaveClass('ant-tag-green');
 
     const cancelledBooking = { ...booking, status: 'cancelled' };
-    render(<BookingItemCard {...cancelledBooking} />);
+    render(
+      <MemoryRouter>
+        <BookingItemCard {...cancelledBooking} />
+      </MemoryRouter>,
+    );
     expect(screen.getByText('CANCELLED')).toHaveClass('ant-tag-red');
   });
 
   it('renders total price with currency', () => {
-    render(<BookingItemCard {...booking} />);
+    render(
+      <MemoryRouter>
+        <BookingItemCard {...booking} />
+      </MemoryRouter>,
+    );
     expect(screen.getByText(`${booking.total_price} ${booking.currency}`)).toBeInTheDocument();
   });
-});
-
-it('renders BookingItemCard correctly', () => {
-  render(<BookingItemCard {...booking} />);
-  expect(screen.getByText(booking.passenger)).toBeInTheDocument();
-  expect(screen.getByText(new RegExp(booking.carrier_name, 'i'))).toBeInTheDocument();
-  expect(screen.getByText(`${booking.total_price} USD`)).toBeInTheDocument();
-  expect(screen.getByText(booking.status.toUpperCase())).toBeInTheDocument();
 });
