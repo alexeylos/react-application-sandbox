@@ -4,8 +4,6 @@ import { Card } from 'antd';
 import './PurchaserCard.less';
 
 const PurchaserCard = ({ booking }: TripDetailsCardProps) => {
-  console.log(booking);
-
   return (
     <div>
       <Card title="Purchaser">

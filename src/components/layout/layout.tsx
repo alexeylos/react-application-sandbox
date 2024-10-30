@@ -1,8 +1,8 @@
-import { Layout as LayoutBase } from 'antd';
 import { LayoutProps } from '@/types/router';
-import SiderMenu from '../shared/SiderMenu';
-import HamburgerMenu from '../shared/HamburgerMenu';
+import { Layout as LayoutBase } from 'antd';
 import { useBreakpoint } from '../../lib/responsive';
+import HamburgerMenu from '../shared/HamburgerMenu';
+import SiderMenu from '../shared/SiderMenu';
 
 const { Content } = LayoutBase;
 
@@ -15,7 +15,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <Content className="child-content">
           {!lg && (
             <div className="hamburger">
-              {' '}
               <HamburgerMenu></HamburgerMenu>
             </div>
           )}

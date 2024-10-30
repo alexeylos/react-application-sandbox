@@ -8,7 +8,7 @@ const TripDetailsCard = ({ booking }: TripDetailsCardProps) => {
   return (
     <div>
       <Card title="Trip Details">
-        <p className="carrier-name">carrier name : {booking.carrier_name}</p>
+        <p className="carrier-name">Carrier name : {booking.carrier_name}</p>
         <div className="divider"></div>
         <div className="destination-details">
           <div className="departure">

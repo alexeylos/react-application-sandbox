@@ -1,3 +1,4 @@
+import { mockBooking, mockBookingMissingData } from '@/msw/bookingDetailsMockData';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import * as bookingApi from '../api/bookingDetailsApi';
@@ -67,37 +68,6 @@ describe('BookingDetails', () => {
   });
 
   it('renders booking details when data is successfully fetched', async () => {
-    const mockBooking = {
-      id: 'B1',
-      carrier_name: 'Carrier 1',
-      departure_station: 'Station 1',
-      arrival_station: 'Station 2',
-      departure_dttm: '2024-10-14T22:32:00Z',
-      arrival_dttm: '2024-10-14T23:32:00Z',
-      total_price: '100.00',
-      currency: 'USD',
-      status: 'active',
-      purchaser: {
-        name: 'John Doe',
-        email: 'john.doe@example.com',
-        phone: '123-456-7890',
-        address: '123 Main St, City, Country',
-      },
-      passengers: [
-        {
-          name: 'Alice',
-          category: 'adult',
-          birth_date: '1990-03-30',
-          ticket_number: 'T1',
-        },
-      ],
-      retailer: {
-        name: 'Retailer 1',
-        code: 'R001',
-      },
-      payment_method: 'Credit Card',
-    };
-
     (bookingApi.useBookingDetails as jest.Mock).mockReturnValue({
       data: mockBooking,
       isLoading: false,
@@ -112,7 +82,6 @@ describe('BookingDetails', () => {
       </MemoryRouter>,
     );
 
-    // Assertions for successfully fetched data
     expect(screen.getByText('Trip Details')).toBeInTheDocument();
     expect(screen.getByText(/Carrier 1/i)).toBeInTheDocument();
     expect(screen.getByText(/Total Price/i)).toBeInTheDocument();
@@ -124,36 +93,8 @@ describe('BookingDetails', () => {
   });
 
   it('renders with missing optional data (e.g., no retailer or payment method)', () => {
-    const mockBooking = {
-      id: 'B1',
-      carrier_name: 'Carrier 1',
-      departure_station: 'Station 1',
-      arrival_station: 'Station 2',
-      departure_dttm: '2024-10-14T22:32:00Z',
-      arrival_dttm: '2024-10-14T23:32:00Z',
-      total_price: '100.00',
-      currency: 'USD',
-      status: 'active',
-      purchaser: {
-        name: 'John Doe',
-        email: 'john.doe@example.com',
-        phone: '123-456-7890',
-        address: '123 Main St, City, Country',
-      },
-      passengers: [
-        {
-          name: 'Alice',
-          category: 'adult',
-          birth_date: '1990-03-30',
-          ticket_number: 'T1',
-        },
-      ],
-      retailer: 'null',
-      payment_method: 'null',
-    };
-
     (bookingApi.useBookingDetails as jest.Mock).mockReturnValue({
-      data: mockBooking,
+      data: mockBookingMissingData,
       isLoading: false,
       isError: false,
     });

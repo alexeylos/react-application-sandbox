@@ -53,8 +53,7 @@ describe('BookingListMobileView', () => {
 
     render(
       <MemoryRouter>
-        {' '}
-        <BookingListMobileView />{' '}
+        <BookingListMobileView />
       </MemoryRouter>,
     );
     expect(screen.getByText('Error fetching data')).toBeInTheDocument();
@@ -69,8 +68,7 @@ describe('BookingListMobileView', () => {
 
     render(
       <MemoryRouter>
-        {' '}
-        <BookingListMobileView />{' '}
+        <BookingListMobileView />
       </MemoryRouter>,
     );
     mockData.forEach((booking) => {

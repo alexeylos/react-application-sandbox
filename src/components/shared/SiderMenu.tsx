@@ -17,7 +17,7 @@ const SiderMenu = () => {
   };
 
   useEffect(() => {
-    if (location.pathname == '/bookings/B1') {
+    if (/^\/bookings\/[^/]+$/.test(location.pathname)) {
       setCurrentLocation('/bookings');
     } else {
       setCurrentLocation(location.pathname);

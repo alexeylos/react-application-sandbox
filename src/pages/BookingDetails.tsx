@@ -28,8 +28,8 @@ const BookingDetails = () => {
       <Row gutter={[20, 20]}>
         <Col xs={24} md={12} xl={8}>
           <div className="trip-details-extra-info">
-            <TripDetailsCard booking={booking}></TripDetailsCard>
-            <ExtraInfo></ExtraInfo>
+            <TripDetailsCard booking={booking} />
+            <ExtraInfo />
           </div>
         </Col>
         <Col xs={24} md={12} xl={16}>
@@ -37,16 +37,16 @@ const BookingDetails = () => {
             <div>
               <Row gutter={[20, 20]}>
                 <Col xs={24} sm={12} md={24} lg={24} xl={12}>
-                  <PurchaserCard booking={booking}></PurchaserCard>
+                  <PurchaserCard booking={booking} />
                 </Col>
                 <Col xs={24} sm={12} md={24} lg={24} xl={12}>
-                  <PaymentCard booking={booking}></PaymentCard>
+                  <PaymentCard booking={booking} />
                 </Col>
               </Row>
             </div>
 
-            <div className="">
-              <PassengersListCard booking={booking}></PassengersListCard>
+            <div>
+              <PassengersListCard booking={booking} />
             </div>
           </div>
         </Col>
