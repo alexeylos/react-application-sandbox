@@ -2,7 +2,7 @@ import { Booking } from '@/types/booking';
 import { ArrowDownOutlined, ClockCircleOutlined } from '@ant-design/icons';
 import { Card, Col, Row, Tag } from 'antd';
 import dayjs from 'dayjs';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './BookingItemCard.less';
 
@@ -20,13 +20,13 @@ const BookingItemCard: React.FC<Booking> = ({
   status,
 }) => {
   const navigate = useNavigate();
-  const onClickNavigate = (id: string) => {
+  const onClickNavigate = useCallback(() => {
     navigate(`/bookings/${id}`);
-  };
+  }, [id]);
 
   return (
     <>
-      <Card onClick={() => onClickNavigate(id)}>
+      <Card onClick={onClickNavigate}>
         <Row gutter={[0, 16]}>
           <Col span={18}>
             <p className="passenger-name">
