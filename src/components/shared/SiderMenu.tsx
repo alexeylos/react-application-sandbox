@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import { Layout as LayoutBase, Menu } from 'antd';
-import { useLocation, useNavigate } from 'react-router-dom';
 import type { MenuProps } from 'antd';
-import './SiderMenu.less';
+import { Layout as LayoutBase, Menu } from 'antd';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import menuItems from '../../constants/menuItems';
+import './SiderMenu.less';
 const { Sider } = LayoutBase;
 
 const SiderMenu = () => {
@@ -17,7 +17,11 @@ const SiderMenu = () => {
   };
 
   useEffect(() => {
-    setCurrentLocation(location.pathname);
+    if (/^\/bookings\/[^/]+$/.test(location.pathname)) {
+      setCurrentLocation('/bookings');
+    } else {
+      setCurrentLocation(location.pathname);
+    }
   }, [location]);
 
   return (

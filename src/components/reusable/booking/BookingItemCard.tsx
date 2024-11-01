@@ -2,10 +2,12 @@ import { Booking } from '@/types/booking';
 import { ArrowDownOutlined, ClockCircleOutlined } from '@ant-design/icons';
 import { Card, Col, Row, Tag } from 'antd';
 import dayjs from 'dayjs';
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './BookingItemCard.less';
 
 const BookingItemCard: React.FC<Booking> = ({
+  id,
   booking_dttm,
   carrier_name,
   passenger,
@@ -17,16 +19,21 @@ const BookingItemCard: React.FC<Booking> = ({
   currency,
   status,
 }) => {
+  const navigate = useNavigate();
+  const onClickNavigate = useCallback(() => {
+    navigate(`/bookings/${id}`);
+  }, [id]);
+
   return (
     <>
-      <Card>
+      <Card onClick={onClickNavigate}>
         <Row gutter={[0, 16]}>
           <Col span={18}>
             <p className="passenger-name">
               <strong>{passenger}</strong>
             </p>
             <p className="booking-dttm">
-              <ClockCircleOutlined />{' '}
+              <ClockCircleOutlined />
               {`${dayjs(booking_dttm).format('YYYY-MM-DD HH:mm')}, ${carrier_name}`}
             </p>
             <div>

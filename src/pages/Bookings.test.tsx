@@ -4,10 +4,16 @@ import { Booking } from '@/types/booking';
 import { render, screen } from '@testing-library/react';
 import { CompareFn } from 'antd/es/table/interface';
 import { mocked } from 'jest-mock';
+import { MemoryRouter } from 'react-router-dom';
 import Bookings from './Bookings';
 
 jest.mock('../api/bookings.ts', () => ({
   useBookings: jest.fn(),
+}));
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: jest.fn(),
 }));
 
 const mockData: Booking[] = [
@@ -133,7 +139,11 @@ Object.defineProperty(window, 'matchMedia', {
 
 describe('Bookings Page', () => {
   it('renders "Bookings" text', () => {
-    render(<Bookings />);
+    render(
+      <MemoryRouter>
+        <Bookings />
+      </MemoryRouter>,
+    );
     const headingElement = screen.getByText(/Bookings/i);
     expect(headingElement).toBeInTheDocument();
   });
@@ -153,7 +163,11 @@ describe('BookingsTable', () => {
       data: null,
     });
 
-    const wrapper = render(<BookingsTable />);
+    const wrapper = render(
+      <MemoryRouter>
+        <BookingsTable />
+      </MemoryRouter>,
+    );
 
     const spinner = wrapper.container.getElementsByClassName('ant-spin')[0];
     expect(spinner).toBeInTheDocument();
@@ -166,7 +180,11 @@ describe('BookingsTable', () => {
       data: null,
     });
 
-    render(<BookingsTable />);
+    render(
+      <MemoryRouter>
+        <BookingsTable />
+      </MemoryRouter>,
+    );
     expect(screen.getByText('Error fetching data')).toBeInTheDocument();
   });
 
@@ -180,7 +198,11 @@ describe('BookingsTable', () => {
       'Total price',
       'Status',
     ];
-    render(<BookingsTable />);
+    render(
+      <MemoryRouter>
+        <BookingsTable />
+      </MemoryRouter>,
+    );
     columnHeaders.forEach((header) => {
       expect(screen.getByText(header)).toBeInTheDocument();
     });
@@ -192,7 +214,11 @@ describe('BookingsTable', () => {
       isLoading: false,
       isError: false,
     });
-    const wrapper = render(<BookingsTable />);
+    const wrapper = render(
+      <MemoryRouter>
+        <BookingsTable />
+      </MemoryRouter>,
+    );
     const rows = wrapper.container.getElementsByClassName('ant-table-row');
     expect(rows).toHaveLength(mockData.length);
   });

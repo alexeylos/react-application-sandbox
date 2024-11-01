@@ -1,8 +1,8 @@
-import { Drawer, Button, Menu } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
+import type { MenuProps } from 'antd';
+import { Button, Drawer, Menu } from 'antd';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import type { MenuProps } from 'antd';
 import menuItems from '../../constants/menuItems';
 import './HamburgerMenu.less';
 
@@ -26,7 +26,11 @@ const HamburgerMenu: React.FC = () => {
   };
 
   useEffect(() => {
-    setCurrentLocation(location.pathname);
+    if (/^\/bookings\/[^/]+$/.test(location.pathname)) {
+      setCurrentLocation('/bookings');
+    } else {
+      setCurrentLocation(location.pathname);
+    }
   }, [location]);
 
   return (

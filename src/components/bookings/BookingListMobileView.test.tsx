@@ -1,9 +1,15 @@
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { useBookings } from '../../api/bookings';
 import BookingListMobileView from './BookingListMobileView';
 
 jest.mock('../../api/bookings', () => ({
   useBookings: jest.fn(),
+}));
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: jest.fn(),
 }));
 
 const mockData = [
@@ -45,7 +51,11 @@ describe('BookingListMobileView', () => {
       isError: true,
     });
 
-    render(<BookingListMobileView />); // Assuming you handle errors inside the component
+    render(
+      <MemoryRouter>
+        <BookingListMobileView />
+      </MemoryRouter>,
+    );
     expect(screen.getByText('Error fetching data')).toBeInTheDocument();
   });
 
@@ -56,8 +66,11 @@ describe('BookingListMobileView', () => {
       isError: false,
     });
 
-    render(<BookingListMobileView />); // Make sure to pass bookings prop
-
+    render(
+      <MemoryRouter>
+        <BookingListMobileView />
+      </MemoryRouter>,
+    );
     mockData.forEach((booking) => {
       expect(screen.getByText(booking.passenger)).toBeInTheDocument();
       expect(screen.getByText(booking.status.toUpperCase())).toBeInTheDocument();

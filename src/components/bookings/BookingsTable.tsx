@@ -2,6 +2,7 @@ import { Table, Tag } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import dayjs from 'dayjs';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useBookings } from '../../api/bookings';
 import { Booking } from '../../types/booking';
 
@@ -79,6 +80,7 @@ export const columns: ColumnsType<Booking> = [
 ];
 
 const BookingsTable: React.FC = () => {
+  const navigate = useNavigate();
   const { data, isLoading, isError } = useBookings();
 
   if (isError) {
@@ -92,6 +94,12 @@ const BookingsTable: React.FC = () => {
       pagination={{ pageSize: 10 }}
       loading={isLoading}
       rowKey="id"
+      onRow={(record) => ({
+        onClick: () => {
+          navigate(`/bookings/${record.id}`);
+        },
+        style: { cursor: 'pointer' },
+      })}
     />
   );
 };
