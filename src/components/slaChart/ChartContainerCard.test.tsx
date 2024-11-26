@@ -57,7 +57,6 @@ describe('ChartContainerCard', () => {
 
   it('renders uptime indicator correctly', () => {
     render(<ChartContainerCard data={mockData} />);
-
     expect(screen.getByText('Uptime Indicator')).toBeInTheDocument();
     expect(screen.getByText(/64\.23\s*%/i)).toBeInTheDocument();
   });
@@ -70,10 +69,44 @@ describe('ChartContainerCard', () => {
 
   it('renders appropriate chart type based on indicator type', () => {
     render(<ChartContainerCard data={mockData} />);
-    const chartDiv = screen
-      .getByText('Response Time Indicator')
-      .closest('.inner-card-header')
-      ?.querySelector('.chart');
-    expect(chartDiv).toContainHTML('<svg');
+    expect(screen.getByText('LineChart Component')).toBeInTheDocument();
+    expect(screen.getByText('Barchart Component')).toBeInTheDocument();
+  });
+
+  it('renders the last column with 24-column width if indicators length is odd', () => {
+    const oddMockData: Agreement = {
+      ...mockData,
+      indicators: [
+        ...mockData.indicators,
+        {
+          id: '3',
+          name: 'latency',
+          title: 'Latency Indicator',
+          description: 'Latency description',
+          type: 'time',
+          unit: 'ms',
+          internal_objective: 0,
+          external_objective: 0,
+          values: [],
+        },
+      ],
+    };
+
+    render(<ChartContainerCard data={oddMockData} />);
+    const lastCol = document.querySelectorAll('.ant-col')[oddMockData.indicators.length - 1];
+
+    expect(lastCol).toHaveClass('ant-col-xs-24 ant-col-xl-24');
+  });
+
+  it('renders correctly when indicator values are empty', () => {
+    const noValuesMockData = {
+      ...mockData,
+      indicators: mockData.indicators.map((ind) => ({ ...ind, values: [] })),
+    };
+    render(<ChartContainerCard data={noValuesMockData} />);
+    expect(screen.getByText('Uptime Indicator')).toBeInTheDocument();
+    expect(screen.getByText('0%')).toBeInTheDocument();
+    expect(screen.getByText('Response Time Indicator')).toBeInTheDocument();
+    expect(screen.getByText('0 ms')).toBeInTheDocument();
   });
 });
