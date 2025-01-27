@@ -1,5 +1,5 @@
-import '@testing-library/jest-dom/jest-globals';
 import '@testing-library/jest-dom';
+import '@testing-library/jest-dom/jest-globals';
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
@@ -14,3 +14,9 @@ Object.defineProperty(window, 'matchMedia', {
     dispatchEvent: jest.fn(),
   })),
 });
+
+jest.mock('d3-array', () => ({}));
+jest.mock('@ant-design/plots', () => ({
+  Chart: jest.fn(),
+  Column: jest.fn(),
+}));

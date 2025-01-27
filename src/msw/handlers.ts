@@ -1,6 +1,7 @@
 import { HttpResponse, http } from 'msw';
 import { bookingsDetails } from '../msw/bookingDetailsMockData';
 import { bookings } from '../msw/bookingMockData';
+import { mockAgreements } from './slaChartMockData';
 
 export const handlers = [
   http.get('/api/dashboard', () => {
@@ -13,6 +14,7 @@ export const handlers = [
       currency: 'USD',
     });
   }),
+
   http.get('/api/bookings', () => {
     return HttpResponse.json(bookings);
   }),
@@ -25,5 +27,9 @@ export const handlers = [
     } else {
       return HttpResponse.json({ error: 'Booking not found' }, { status: 404 });
     }
+  }),
+
+  http.get('/api/slaDetailsApi', () => {
+    return HttpResponse.json(mockAgreements);
   }),
 ];

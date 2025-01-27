@@ -4,6 +4,7 @@ import { ROUTES } from './constants/common';
 import BookingDetails from './pages/BookingDetails';
 import Bookings from './pages/Bookings';
 import Home from './pages/Home';
+import Sla from './pages/Sla';
 import './styles.less';
 const App: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const App: React.FC = () => {
           <Route path={ROUTES.HOME} element={<Home />} />
           <Route path={ROUTES.BOOKINGS} element={<Bookings />} />
           <Route path={ROUTES.BOOKING_DETAILS} element={<BookingDetails />} />
+          <Route path={ROUTES.SLA} element={<Sla />} />
         </Routes>
       </Layout>
     </BrowserRouter>
